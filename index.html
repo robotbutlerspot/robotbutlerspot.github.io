@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Spot is powered by large language models to chain low-level skills to achieve language rearrangement tasks.">
+  <meta name="keywords" content="Large Language Models, Open-vocabulary pick-and-place">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robot Butler: Open-vocabulary Mobile Pick-and-Place</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src=""></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Robot Butler: Open-Vocabulary Mobile Pick-and-Place for Spot</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://sites.google.com/view/tyjimmyyang">Tsung-Yen Yang</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/SergioArnaud">Sergio Arnaud</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://jimmytyyang.github.io/">Kavit Shah</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="http://naoki.io/">Naoki Yokoyama</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=p463opcAAAAJ&hl=en">Alexander William Clegg</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.joannetruong.com/">Joanne Truong</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.ericundersander.com/">Eric Undersander</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.maksymets.com/">Oleksandr Maksymets</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=DMTuJzAAAAAJ&hl=en">Mrinal Kalakrishnan</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://roozbehm.info/">Roozbeh Mottaghi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://faculty.cc.gatech.edu/~dbatra/">Dhruv Batra</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://akshararai.github.io/">Akshara Rai</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Meta AI, FAIR Team</span>
+            <span class="author-block"><sup>2</sup>Georgia Tech</span>
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"></sup>CVPR Expo Meta AI Booth Schedule: June 20, 21, 22 </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"></sup>CVPR Demo Track Booth Schedule: June 22 </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Demo</h2>
+        <br>
+        <div class="videoWrapper">
+          <iframe width="100%" height="480"
+            src="https://www.youtube.com/embed/cQIQKCt0YIY" title="Open-vocabulary Mobile Pick-and-Place for Spot" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+          </iframe>
+        </div>
+        <div class="content has-text-justified">
+          <!-- <p>
+            Natural language provides a simple way for humans to specify a goal for a robot,
+            such as <i>"go to the kitchen and bring the sugar to me."</i>
+            However, current state-of-the-art language-based embodied AI systems
+            such as <a href="https://say-can.github.io/">SayCan (Ahn et al., 2022)</a> do not have such capability since
+            (1) they rely on a fixed-set vocabulary that cannot generalize to diverse instructions,
+            and (2) the robot does not know the semantic meaning of the environment,
+            and thus requires knowing point goal location to navigate to.
+          </p>
+          <p>
+            In this demo, we demonstrate embodied AI systems that use large language models (LLMs)
+            to chain Spot's (quadruped robot by Boston Dynamics) low-level skills and thus complete open-vocabulary object nav-pick-place tasks.
+            The proposed system consists of three parts:
+            (1) LLMs take a natural language instruction as input and produce a sequence of low-level skills,
+            along with their corresponding skills' input parameters such as the target object name,
+            (2) a pre-built map that stores CLIP embedding of the environment is used to query the point goal location given text generated from LLMs,
+            and (3) finally these low-level skills are executed sequentially to complete the task.
+          </p>
+          <p>
+            By doing so, the robot figures out the location of the target object and formulates a plan of action.
+            These components form a natural hierarchical architecture for intelligent control:
+            a high level at which goal and state are identified from sensory data
+            and object search and feasible plans are formulated given text,
+            and a low level at which skills are chained together while being a response to changing conditions.
+          </p> -->
+          <p>
+            In this demo, we are going to show that a robot receives natural language instruction for completing the task
+            of open-vocabulary object nav-pick-place tasks.
+            The user is able to provide the instruction either by typing or saying using a keyboard or microphone.
+            For example, the first demo in the video (2:35) shows a user typing <i>"find human and get mug and place it in the case"</i>.
+            The robot first goes to the human location, picks up the mug, navigates to the case, and places the mug there.
+            In addition, the second demo in the video (3:22) shows a user typing <i>"navigate to the human and get the mug and place it in the sink"</i>.
+            The robot first goes to the human location, grasps the mug, and finally places the mug in the sink.
+            The user will be able to provide free-form instructions, and the robot will follow the instruction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The first demo in the video shows a user typing <i>"find human and get mug and place it in the case"</i>,
+LLMs take the text input and outputs a sequence of low-level skills:
+<b>NavPolicy(<i>"human"</i>) -> PickPolicy(<i>"mug"</i>) -> NavPolicy(<i>"case"</i>) -> PlacePolicy()</b>.
+When executing <b>NavPolicy(<i>"human"</i>)</b>,
+a semantic feature map of the environment is queried to get a point-goal location of the human.
+Then this point goal location is fed into a reinforcement-learning-trained navigation policy
+to let Spot navigate to the target. After Spot finds the human,
+<b>PickPolicy(<i>"mug"</i>)</b> is used to pick up the target object.
+The pick policy is trained to move the arm to the target grasping location of the object
+defined by the text so that Spot can grasp the object.
+Finally, Spot uses <b>NavPolicy(<i>"case"</i>)</b> to find the case and then calls
+<b>PlacePolicy()</b> to place the object there.
+In addition, our navigation policy is able to take an alternative route to avoid collision with humans as shown in the micro-kitchen demo.
+Moreoever, our pick policy is able to change the grasping location if the object moves in the robotics lab demo.
+These show that our proposed method is robust to disturbance. -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Approach</h2>
+        <div class="content has-text-justified">
+          <p>
+            Natural language provides a simple way for humans to specify a goal for a robot,
+            such as <i>"go to the kitchen and bring the sugar to me."</i>
+            However, current state-of-the-art language-based embodied AI systems do not have such capability since
+            (1) they rely on a fixed-set vocabulary that cannot generalize to diverse instructions,
+            and (2) the robot does not know the semantic meaning of the environment,
+            and thus requires knowing the point goal location to navigate to.
+          </p>
+          <p>
+            In this demo, we demonstrate embodied AI systems that use large language models (LLMs)
+            to chain Spot's (quadruped robot by Boston Dynamics) low-level skills and thus complete open-vocabulary object nav-pick-place tasks.
+            The proposed system consists of three parts:
+            (1) LLMs take natural language instruction as input and produce a sequence of low-level skills,
+            along with their corresponding skills' input parameters such as the target object name,
+            (2) a pre-built map that stores CLIP embedding of the environment is used to query the point goal location given text generated from LLMs,
+            and (3) finally these low-level skills are executed sequentially to complete the task.
+          </p>
+          <p>
+            For example, the first demo in the video (2:35) shows a user typing <i>"find human and get mug and place it in the case"</i>,
+            LLMs take the text input and output a sequence of low-level skills:
+            <b>NavPolicy(<i>"human"</i>) -> PickPolicy(<i>"mug"</i>) -> NavPolicy(<i>"case"</i>) -> PlacePolicy()</b>.
+            When executing <b>NavPolicy(<i>"human"</i>)</b>,
+            a semantic feature map of the environment is queried to get a point-goal location of the human.
+            Then this point goal location is fed into a reinforcement-learning-trained navigation policy
+            to let Spot navigate to the target. After Spot finds the human,
+            <b>PickPolicy(<i>"mug"</i>)</b> is used to pick up the target object.
+            The pick policy is trained to move the arm to the target grasping location of the object
+            defined by the text so that Spot can grasp the object.
+            Finally, Spot uses <b>NavPolicy(<i>"case"</i>)</b> to find the case and then calls
+            <b>PlacePolicy()</b> to place the object there.
+            In addition, our navigation policy is able to take an alternative route to avoid collision with humans as shown in the micro-kitchen demo.
+            Moreover, our pick policy is able to change the grasping location if the object moves in the robotics lab demo.
+            These show that our proposed method is robust to disturbance.
+          </p>
+          <p>
+            This demo pieces many efforts together within the Embodied AI team at FAIR.
+            One critical component of this demo is low-level skills.
+            These low-level skills are from
+            <a href="https://adaptiveskillcoordination.github.io/">Adaptive Skill Coordination for Robotic Mobile Manipulation paper</a>.
+            Moreover, we use the idea from the paper
+            <a href="https://arxiv.org/abs/2212.00922">Navigating to Objects in the Real World</a> for building the semantic map of the environment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Limitations and Future Work</h2>
+        <div class="content has-text-justified">
+          <p>
+            There are several limitations and areas for future work.
+            First, while our demo is a reasonably general approach,
+            we do not integrate Spot with the skills such as opening doors or drawers.
+            This will improve generalization to other mobile manipulation tasks.
+            Second, we run our demo in static environments where the location of the object is approximately fixed and the robot is the only agent.
+            Future work involves studying human-robot collaboration in a more active way,
+            and dynamic environments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
